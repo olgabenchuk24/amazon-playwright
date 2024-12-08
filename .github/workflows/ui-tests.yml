@@ -1,0 +1,16 @@
+# .github/workflows/ui-tests.yml
+name: "Amazon playwright UI Tests"
+
+on: push
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install Dependencies
+        run: npm install
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+      - name: Run Playwright Tests
+        run: npx playwright test
