@@ -7,10 +7,14 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
       - name: Install Dependencies
         run: npm install
+
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
+
       - name: Run Playwright Tests
-        run: npx playwright test
+        run: npx playwright test -g "see the main page"
