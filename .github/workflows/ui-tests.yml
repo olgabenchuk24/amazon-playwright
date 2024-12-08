@@ -1,7 +1,9 @@
 # .github/workflows/ui-tests.yml
 name: "Amazon playwright UI Tests"
 
-on: push
+on:
+  schedule:
+    - cron: "*/3 * * * *"
 
 jobs:
   test:
