@@ -1,7 +1,10 @@
 # .github/workflows/ui-tests.yml
 name: "Amazon playwright UI Tests"
 
-on: push
+on:
+  pull_request:
+    branches:
+      - main
 
 jobs:
   smoke-test:
