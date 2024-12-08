@@ -1,10 +1,10 @@
 # .github/workflows/ui-tests.yml
 name: "Amazon playwright UI Tests"
 
-on:
-  pull_request:
-    branches:
-      - main
+on: push
+env:
+  TEST_NAME1: "see the main page"
+  TEST_NAME2: "see the reqular main page"
 
 jobs:
   smoke-test:
@@ -20,7 +20,7 @@ jobs:
         run: npx playwright install --with-deps
 
       - name: Run Playwright Tests
-        run: npx playwright test -g "see the main page"
+        run: npx playwright test -g "$TEST_NAME1"
   reqular-test:
     runs-on: ubuntu-latest
     steps:
@@ -34,4 +34,4 @@ jobs:
         run: npx playwright install --with-deps
 
       - name: Run Playwright Tests
-        run: npx playwright test -g "see the reqular main page"
+        run: npx playwright test -g "$TEST_NAME2"
