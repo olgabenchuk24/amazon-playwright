@@ -1,12 +1,10 @@
 # .github/workflows/ui-tests.yml
 name: "Amazon playwright UI Tests"
 
-on:
-  schedule:
-    - cron: "*/3 * * * *"
+on: push
 
 jobs:
-  test:
+  smoke-test:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
@@ -20,3 +18,17 @@ jobs:
 
       - name: Run Playwright Tests
         run: npx playwright test -g "see the main page"
+  reqular-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+
+      - name: Run Playwright Tests
+        run: npx playwright test -g "see the reqular main page"
