@@ -5,6 +5,6 @@ test.beforeEach(async ({ page }) => {
   await page.goto("https://playwright.dev/");
 });
 
-test("see the reqular main page", async ({ page }) => {
+test("see the reqular main page23", async ({ page }) => {
   await expect(page.locator(".hero__title.heroTitle_ohkl")).toBeVisible();
 });

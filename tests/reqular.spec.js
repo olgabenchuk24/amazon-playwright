@@ -6,5 +6,5 @@ test.beforeEach(async ({ page }) => {
 });
 
 test("see the reqular main page", async ({ page }) => {
-  await expect(page.locator(".hero__title.heroTitle_ohkl")).toBeVisible();
+  await expect(page.locator(".hero__title.heroTitle_ohk")).toBeVisible();
 });
