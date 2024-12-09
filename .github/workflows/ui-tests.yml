@@ -25,6 +25,7 @@ jobs:
         run: npx playwright test -g "$TEST_NAME1"
 
       - name: Upload Artifacts
+        if: failure()
         uses: actions/upload-artifact@v4
         with:
           name: test-result artifacts
@@ -43,7 +44,9 @@ jobs:
 
       - name: Run Playwright Tests
         run: npx playwright test -g "$TEST_NAME2"
+
       - name: Upload Artifacts
+        if: failure()
         uses: actions/upload-artifact@v4
         with:
           name: test-result artifacts
