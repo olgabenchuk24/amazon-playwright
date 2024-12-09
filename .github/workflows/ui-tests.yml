@@ -14,13 +14,12 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
-
       - name: Install Dependencies
-        run: npm install
+        run: npm ci
       - name: Upload Artifacts for Testing
         uses: actions/upload-artifact@v4
         with:
-          name: test-artifacts
+          name: node_modules
           path: node_modules
 
   run-eslint:
@@ -29,8 +28,15 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
+      - name: Download Test Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: node_modules
+          path: node_modules
+      - name: LS
+        run: ls node_modules/.bin
       - name: Run ESLint
-        run: npm run lint:fix
+        run: npm run lint
 
   smoke-test:
     runs-on: ubuntu-latest
@@ -41,7 +47,8 @@ jobs:
       - name: Download Test Artifacts
         uses: actions/download-artifact@v4
         with:
-          name: test-artifacts
+          name: node_modules
+          path: node_modules
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
 
@@ -63,7 +70,8 @@ jobs:
       - name: Download Test Artifacts
         uses: actions/download-artifact@v4
         with:
-          name: test-artifacts
+          name: node_modules
+          path: node_modules
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
 
