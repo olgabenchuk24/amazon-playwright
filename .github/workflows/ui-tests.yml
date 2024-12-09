@@ -5,6 +5,8 @@ on: push
 env:
   TEST_NAME1: "see the main page"
   TEST_NAME2: "see the reqular main page"
+  AMAZON_URL: "https://www.amazon.de/"
+  PLAYWRIGHT_URL: ${{ secrets.PLAYWRIGHT_URL }}
 
 jobs:
   smoke-test:

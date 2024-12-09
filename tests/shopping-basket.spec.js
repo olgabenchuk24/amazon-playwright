@@ -5,7 +5,12 @@ const { ResultsPage } = require("../pages/results.js");
 const { ShoppingBasketPage } = require("../pages/shopping-basket.js");
 
 test.beforeEach(async ({ page }) => {
-  await page.goto("https://www.amazon.de/");
+  if (!process.env.AMAZON_URL) {
+    throw new Error(
+      `AMAZON_URL environment variable is missing, got "${process.env.AMAZON_URL}".`
+    );
+  }
+  await page.goto(process.env.AMAZON_URL);
   await page.getByTestId("sp-cc-accept").click();
 });
 
