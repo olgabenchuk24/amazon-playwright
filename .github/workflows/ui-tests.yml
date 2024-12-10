@@ -36,13 +36,13 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
-      - name: Download Test Artifacts
-        uses: actions/download-artifact@v4
+      - name: Restore Node Modules
+        uses: actions/cache@v4
         with:
-          name: node_modules
           path: node_modules
-      - name: LS
-        run: ls node_modules/.bin
+          key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-modules-
       - name: Run ESLint
         run: npm run lint
 
