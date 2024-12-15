@@ -1,0 +1,10 @@
+version: "3.9"
+
+services:
+  playwright:
+    build:
+      context: .
+    environment:
+      - GREP_TEST=${GREP_TEST}
+    volumes:
+      - ./test-results:/app/test-results
