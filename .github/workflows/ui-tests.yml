@@ -51,21 +51,15 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
-      - name: Run docker-compose
-        env:
-          GREP_TEST: "see the main page"
-        uses: hoverkraft-tech/compose-action@v2.0.1
-        with:
-          compose-file: "./docker-compose.yml"
+      - name: Run tests
+        run: GREP_TEST="see the main page" docker compose up --exit-code-from playwright
 
   reqular-test:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
-      - name: Run docker-compose
+      - name: Run tests
         env:
           GREP_TEST: "see the reqular main page"
-        uses: hoverkraft-tech/compose-action@v2.0.1
-        with:
-          compose-file: "./docker-compose.yml"
+        run: docker compose up --exit-code-from playwright
