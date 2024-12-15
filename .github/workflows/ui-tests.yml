@@ -56,7 +56,7 @@ jobs:
           GREP_TEST: "see the main page"
         uses: hoverkraft-tech/compose-action@v2.0.1
         with:
-          compose-file: ".docker-compose.yml"
+          compose-file: "./docker-compose.yml"
 
   reqular-test:
     runs-on: ubuntu-latest
@@ -68,4 +68,4 @@ jobs:
           GREP_TEST: "see the main page"
         uses: hoverkraft-tech/compose-action@v2.0.1
         with:
-          compose-file: ".docker-compose.yml"
+          compose-file: "./docker-compose.yml"
