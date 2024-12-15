@@ -52,7 +52,7 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
       - name: Run tests
-        run: GREP_TEST="see the main page" PLAYWRIGHT_URL="https://playwright.dev/" docker compose up --exit-code-from playwright
+        run: GREP_TEST="see the main page" PLAYWRIGHT_URL=${{ secrets.PLAYWRIGHT_URL }} docker compose up --exit-code-from playwright
 
   reqular-test:
     runs-on: ubuntu-latest
