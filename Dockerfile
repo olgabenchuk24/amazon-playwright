@@ -8,4 +8,6 @@ RUN npm install
 
 COPY . .
 
+ENV CI=true
+
 CMD npx playwright test -g "$GREP_TEST"
