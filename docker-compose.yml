@@ -6,5 +6,6 @@ services:
       context: .
     environment:
       - GREP_TEST=${GREP_TEST}
+      - PLAYWRIGHT_URL=${PLAYWRIGHT_URL}
     volumes:
       - ./test-results:/app/test-results
