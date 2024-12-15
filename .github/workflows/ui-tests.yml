@@ -65,7 +65,7 @@ jobs:
         uses: actions/checkout@v4
       - name: Run docker-compose
         env:
-          GREP_TEST: "see the main page"
+          GREP_TEST: "see the reqular main page"
         uses: hoverkraft-tech/compose-action@v2.0.1
         with:
           compose-file: "./docker-compose.yml"
