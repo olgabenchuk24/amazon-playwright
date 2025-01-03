@@ -46,13 +46,33 @@ jobs:
       - name: Run ESLint
         run: npm run lint
 
-  smoke-test:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
+      - name: Build Docker Image
+        run: docker build -t playwright:latest
+      - name: Save Docker Image
+        run: docker save -o playwright.tar playwright:latest
+      - name: Upload image to cache
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright
+          path: playwright.tar
+
+  smoke-test:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Download image from cache
+        uses: actions/download-artifact@v4
+        with:
+          name: playwright
+      - name: Load image
+        run: docker load --input playwright.tar
       - name: Run tests
-        run: GREP_TEST="see the main page" PLAYWRIGHT_URL=${{ secrets.PLAYWRIGHT_URL }} docker compose up --exit-code-from playwright
+        run: GREP_TEST="see the main page" PLAYWRIGHT_URL=${{ secrets.PLAYWRIGHT_URL }} docker run --rm playwright:latest --exit-code-from playwright
 
   reqular-test:
     runs-on: ubuntu-latest
