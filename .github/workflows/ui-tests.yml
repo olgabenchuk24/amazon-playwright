@@ -70,7 +70,7 @@ jobs:
         run: docker run -e GREP_TEST="see the main page" -e PLAYWRIGHT_URL="https://playwright.dev/" olgabenchuk/playwright:latest
   push:
     runs-on: ubuntu-latest
-    needs: build
+    needs: [build, smoke-test]
     steps:
       - name: login to docker registry
         run: docker login -u ${{secrets.DOCKERHUB_USERNAME}} -p ${{secrets.DOCKERHUB_TOKEN}}
@@ -82,13 +82,3 @@ jobs:
         run: docker load --input playwright.tar
       - name: Push image to docker hub
         run: docker push olgabenchuk/playwright:latest
-
-  reqular-test:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-      - name: Run tests
-        env:
-          GREP_TEST: "see the reqular main page"
-        run: docker compose up --exit-code-from playwright
