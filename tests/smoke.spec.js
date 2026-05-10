@@ -15,5 +15,5 @@ test("see the main page", async ({ page }) => {
 });
 
 test("see hearder on teh main page", async ({ page }) => {
-  await expect(page.locator(".header.amazon_header")).toBeVisible();
+  await expect(page.locator(".header.amazon_headerdd")).toBeVisible();
 });
