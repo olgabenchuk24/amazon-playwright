@@ -13,3 +13,7 @@ test.beforeEach(async ({ page }) => {
 test("see the main page", async ({ page }) => {
   await expect(page.locator(".hero__title.heroTitle_ohkl3")).toBeVisible();
 });
+
+test("see hearder on teh main page", async ({ page }) => {
+  await expect(page.locator(".header.amazon_header")).toBeVisible();
+});
